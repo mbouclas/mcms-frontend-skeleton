@@ -11,7 +11,7 @@ export class BaseRequestService {
     async post<T>(url: string, data: IGenericObject) {
         let res: AxiosResponse<T>;
         try {
-            res = await Axios.post<T>(`${process.env.MCRM_API}${url}`, data, {
+            res = await Axios.post<T>(`${process.env.API_URL}${url}`, data, {
                 withCredentials: true,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -30,7 +30,7 @@ export class BaseRequestService {
     async get<T>(url: string, queryParams: IGenericObject = {}, lang?: string) {
         let res: AxiosResponse<T>;
         lang = (lang) ? lang : 'en';
-        const endpoint = `${process.env.MCRM_API}${url}`;
+        const endpoint = `${process.env.API_URL}${url}`;
         const q = (Object.keys(queryParams).length > 0) ? createFilterUrl(endpoint, queryParams) : endpoint;
 
         try {
